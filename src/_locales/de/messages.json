@@ -47,8 +47,6 @@
     "html_history_recent_sessions": { "message": "Kürzliche Sitzungen" },
     "html_history_saved_sessions": { "message": "Gespeicherte Sitzungen" },
     "html_history_import_session": { "message": "Sitzung importieren" },
-    "html_notice_title": { "message": "Mitteilung" },
-    "html_notice_important_notice": { "message": "Wichtige Mitteilung von The Great Suspender" },
     "html_options_title": { "message": "Einstellungen" },
     "html_options_suspend_title": { "message": "Automatisches Tab Aussetzen" },
     "html_options_suspended_title": { "message": "Ausgesetzte Tabs" },

@@ -47,8 +47,6 @@
     "html_history_recent_sessions": { "message": "Предыдущие сессии" },
     "html_history_saved_sessions": { "message": "Сохранённые сессии" },
     "html_history_import_session": { "message": "Импорт сессии" },
-    "html_notice_title": { "message": "Уведомление" },
-    "html_notice_important_notice": { "message": "Важное уведомление от The Great Suspender" },
     "html_options_title": { "message": "Настройки" },
     "html_options_suspend_title": { "message": "Автоматическая приостановка вкладок" },
     "html_options_suspended_title": { "message": "Приостановленные вкладки" },

@@ -47,8 +47,6 @@
     "html_history_recent_sessions": { "message": "Sessões recentes" },
     "html_history_saved_sessions": { "message": "Sessões salvas" },
     "html_history_import_session": { "message": "Importar sessão" },
-    "html_notice_title": { "message": "Aviso" },
-    "html_notice_important_notice": { "message": "Aviso importante do The Great Suspender" },
     "html_options_title": { "message": "Configurações" },
     "html_options_suspend_title": { "message": "Suspensão de aba automática" },
     "html_options_suspended_title": { "message": "Guias suspensas" },

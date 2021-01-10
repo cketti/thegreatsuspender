@@ -47,8 +47,6 @@
     "html_history_recent_sessions": { "message": "最近会话" },
     "html_history_saved_sessions": { "message": "已储存会话" },
     "html_history_import_session": { "message": "导入会话" },
-    "html_notice_title": { "message": "通知" },
-    "html_notice_important_notice": { "message": "来自 The Great Suspender 的重要通知" },
     "html_options_title": { "message": "设置" },
     "html_options_suspend_title": { "message": "标签页自动冻结" },
     "html_options_suspended_title": { "message": "冻结的标签页" },

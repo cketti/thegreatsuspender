@@ -47,8 +47,6 @@
     "html_history_recent_sessions": { "message": "Recent sessions" },
     "html_history_saved_sessions": { "message": "Saved sessions" },
     "html_history_import_session": { "message": "Import session" },
-    "html_notice_title": { "message": "Notice" },
-    "html_notice_important_notice": { "message": "Important notice from The Great Suspender" },
     "html_options_title": { "message": "Settings" },
     "html_options_suspend_title": { "message": "Automatic tab suspension" },
     "html_options_suspended_title": { "message": "Suspended tabs" },

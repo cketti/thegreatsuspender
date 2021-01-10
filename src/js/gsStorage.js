@@ -33,7 +33,6 @@ var gsStorage = {
   ...gsStorageSettings,
 
   APP_VERSION: 'gsVersion',
-  LAST_NOTICE: 'gsNotice',
   LAST_EXTENSION_RECOVERY: 'gsExtensionRecovery',
 
   noop: function() {},
@@ -352,34 +351,6 @@ var gsStorage = {
       gsUtils.error(
         'gsStorage',
         'failed to save ' + gsStorage.APP_VERSION + ' to local storage',
-        e
-      );
-    }
-  },
-
-  fetchNoticeVersion: function() {
-    var lastNoticeVersion;
-    try {
-      lastNoticeVersion = JSON.parse(
-        localStorage.getItem(gsStorage.LAST_NOTICE)
-      );
-    } catch (e) {
-      gsUtils.error(
-        'gsStorage',
-        'Failed to parse ' + gsStorage.LAST_NOTICE + ': ',
-        localStorage.getItem(gsStorage.LAST_NOTICE)
-      );
-    }
-    lastNoticeVersion = lastNoticeVersion || '0';
-    return lastNoticeVersion + '';
-  },
-  setNoticeVersion: function(newVersion) {
-    try {
-      localStorage.setItem(gsStorage.LAST_NOTICE, JSON.stringify(newVersion));
-    } catch (e) {
-      gsUtils.error(
-        'gsStorage',
-        'failed to save ' + gsStorage.LAST_NOTICE + ' to local storage',
         e
       );
     }

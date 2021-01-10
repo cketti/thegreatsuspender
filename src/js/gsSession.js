@@ -302,7 +302,6 @@ var gsSession = (function() {
     await gsUtils.removeTabsByUrlAsPromised(updatedUrl);
 
     await gsIndexedDb.performMigration(lastVersion);
-    gsStorage.setNoticeVersion('0');
     const shouldRecoverTabs = await checkForCrashRecovery(currentSessionTabs);
     if (shouldRecoverTabs) {
       await gsUtils.createTabAndWaitForFinishLoading(updatedUrl, 10000);

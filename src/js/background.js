@@ -33,7 +33,6 @@ var tgs = (function() {
   const STATE_SCROLL_POS = 'scrollPos';
 
   const focusDelay = 500;
-  const noticeCheckInterval = 1000 * 60 * 60 * 12; // every 12 hours
 
   const _tabStateByTabId = {};
   const _currentFocusedTabIdByWindowId = {};
@@ -44,7 +43,6 @@ var tgs = (function() {
   let _sessionSaveTimer;
   let _newTabFocusTimer;
   let _newWindowFocusTimer;
-  let _noticeToDisplay;
   let _isCharging = false;
   let _triggerHotkeyUpdate = false;
   let _suspensionToggleHotkey;
@@ -136,10 +134,6 @@ var tgs = (function() {
       gsUtils.log('background', 'init successful');
       resolve();
     });
-  }
-
-  function startTimers() {
-    startNoticeCheckerJob();
   }
 
   function getInternalViewByTabId(tabId) {
@@ -1178,72 +1172,6 @@ var tgs = (function() {
     });
   }
 
-  function checkForNotices() {
-    gsUtils.log('background', 'Checking for notices..');
-    var xhr = new XMLHttpRequest();
-    var lastShownNoticeVersion = gsStorage.fetchNoticeVersion();
-
-    xhr.open('GET', 'https://greatsuspender.github.io/notice.json', true);
-    xhr.timeout = 4000;
-    xhr.setRequestHeader('Cache-Control', 'no-cache');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.responseText) {
-        var resp;
-        try {
-          resp = JSON.parse(xhr.responseText);
-        } catch (e) {
-          gsUtils.error(
-            'background',
-            'Failed to parse notice response',
-            xhr.responseText
-          );
-          return;
-        }
-
-        if (!resp || !resp.active || !resp.text) {
-          gsUtils.log('background', 'No new notice found');
-          return;
-        }
-
-        //only show notice if it is intended for this extension version
-        var noticeTargetExtensionVersion = String(resp.target);
-        if (
-          noticeTargetExtensionVersion !== chrome.runtime.getManifest().version
-        ) {
-          gsUtils.log(
-            'background',
-            `Notice target extension version: ${noticeTargetExtensionVersion}
-            does not match actual extension version: ${
-              chrome.runtime.getManifest().version
-            }`
-          );
-          return;
-        }
-
-        //only show notice if it has not already been shown
-        var noticeVersion = String(resp.version);
-        if (noticeVersion <= lastShownNoticeVersion) {
-          gsUtils.log(
-            'background',
-            `Notice version: ${noticeVersion} is not greater than last shown notice version: ${lastShownNoticeVersion}`
-          );
-          return;
-        }
-
-        //show notice - set global notice field (so that it can be trigger to show later)
-        _noticeToDisplay = resp;
-      }
-    };
-    xhr.send();
-  }
-
-  function requestNotice() {
-    return _noticeToDisplay;
-  }
-  function clearNotice() {
-    _noticeToDisplay = undefined;
-  }
-
   function isCharging() {
     return _isCharging;
   }
@@ -1747,11 +1675,6 @@ var tgs = (function() {
     chrome.windows.onCreated.addListener(function(window) {
       gsUtils.log(window.id, 'window created.');
       queueSessionTimer();
-
-      var noticeToDisplay = requestNotice();
-      if (noticeToDisplay) {
-        chrome.tabs.create({ url: chrome.extension.getURL('notice.html') });
-      }
     });
     chrome.windows.onRemoved.addListener(function(windowId) {
       gsUtils.log(windowId, 'window removed.');
@@ -1797,11 +1720,6 @@ var tgs = (function() {
     });
   }
 
-  function startNoticeCheckerJob() {
-    checkForNotices();
-    window.setInterval(checkForNotices, noticeCheckInterval);
-  }
-
   return {
     STATE_TIMER_DETAILS,
     STATE_UNLOADED_URL,
@@ -1821,9 +1739,6 @@ var tgs = (function() {
     setViewGlobals,
     getInternalViewByTabId,
     getInternalViewsByViewName,
-    startTimers,
-    requestNotice,
-    clearNotice,
     buildContextMenu,
     getActiveTabStatus,
     getDebugInfo,
@@ -1877,7 +1792,4 @@ Promise.resolve()
   .then(tgs.initAsPromised) // adds handle(Un)SuspendedTabChanged listeners!
   .catch(error => {
     gsUtils.error('background init error: ', error);
-  })
-  .finally(() => {
-    tgs.startTimers();
   });

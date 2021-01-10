@@ -34,8 +34,6 @@
   "html_history_recent_sessions": { "message": "Son oturumlar" },
   "html_history_saved_sessions": { "message": "Kayıtlı oturumlar" },
   "html_history_title": { "message": "Oturum yönetimi" },
-  "html_notice_important_notice": { "message": "Great Suspender'dan önemli uyarı" },
-  "html_notice_title": { "message": "Not" },
   "html_options_other_enable_context_menu": { "message": "Sağ tuş menüye Great Suspender için menü ekle" },
   "html_options_other_enable_context_menu_tooltip_line1": { "message": "Web sayfasının sağ tıklama menüsüne bu uzantı için kontrol ekle." },
   "html_options_other_enable_context_menu_tooltip_line2": { "message": "Gelişmiş askıya alma işlemlerine" },

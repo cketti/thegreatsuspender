@@ -47,8 +47,6 @@
     "html_history_recent_sessions": { "message": "最近記錄" },
     "html_history_saved_sessions": { "message": "已儲存記錄" },
     "html_history_import_session": { "message": "匯入記錄" },
-    "html_notice_title": { "message": "通知" },
-    "html_notice_important_notice": { "message": "來自 The Great Suspender 的重要通知" },
     "html_options_title": { "message": "設定" },
     "html_options_suspend_title": { "message": "自動凍結分頁" },
     "html_options_suspended_title": { "message": "凍結的分頁" },
