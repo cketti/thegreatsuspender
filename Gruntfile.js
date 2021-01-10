@@ -80,17 +80,6 @@ module.exports = function(grunt) {
         ],
         dest: 'build/zip/<%= config.buildName %>.zip',
       },
-      private: {
-        src: [
-          '<%= config.tempDir %>src/**/*',
-          '!**/html2canvas.js',
-          '!**/Thumbs.db',
-        ],
-        dest: 'build/crx/<%= config.buildName %>.crx',
-        options: {
-          privateKey: 'key.pem',
-        },
-      },
     },
     clean: ['<%= config.tempDir %>'],
   });
@@ -103,7 +92,6 @@ module.exports = function(grunt) {
     'copy',
     'string-replace:debugoff',
     'crx:public',
-    'crx:private',
     'clean',
   ]);
   grunt.registerTask('tgut', [
@@ -111,7 +99,6 @@ module.exports = function(grunt) {
     'string-replace:debugon',
     'string-replace:localesTgut',
     'crx:public',
-    'crx:private',
     'clean',
   ]);
 };
