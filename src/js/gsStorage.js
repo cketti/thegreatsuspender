@@ -36,11 +36,6 @@ var gsStorage = {
   LAST_NOTICE: 'gsNotice',
   LAST_EXTENSION_RECOVERY: 'gsExtensionRecovery',
 
-  SM_SESSION_METRICS: 'gsSessionMetrics',
-  SM_TIMESTAMP: 'sessionTimestamp',
-  SM_SUSPENDED_TAB_COUNT: 'suspendedTabCount',
-  SM_TOTAL_TAB_COUNT: 'totalTabCount',
-
   noop: function() {},
 
   getSettingsDefaults: function() {
@@ -417,36 +412,6 @@ var gsStorage = {
         'failed to save ' +
           gsStorage.LAST_EXTENSION_RECOVERY +
           ' to local storage',
-        e
-      );
-    }
-  },
-
-  fetchSessionMetrics: function() {
-    var sessionMetrics = {};
-    try {
-      sessionMetrics = JSON.parse(
-        localStorage.getItem(gsStorage.SM_SESSION_METRICS)
-      );
-    } catch (e) {
-      gsUtils.error(
-        'gsStorage',
-        'Failed to parse ' + gsStorage.SM_SESSION_METRICS + ': ',
-        localStorage.getItem(gsStorage.SM_SESSION_METRICS)
-      );
-    }
-    return sessionMetrics;
-  },
-  setSessionMetrics: function(sessionMetrics) {
-    try {
-      localStorage.setItem(
-        gsStorage.SM_SESSION_METRICS,
-        JSON.stringify(sessionMetrics)
-      );
-    } catch (e) {
-      gsUtils.error(
-        'gsStorage',
-        'failed to save ' + gsStorage.SM_SESSION_METRICS + ' to local storage',
         e
       );
     }
